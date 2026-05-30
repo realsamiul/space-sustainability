@@ -26,7 +26,7 @@ class OmegaExternal extends HTMLElement {
         this.serverUrl = `${url.origin}/`;
         this.baseSlug = url.pathname.replace(/^\/+/, '');
 
-        this.isDevMode = this.getAttribute('dev-mode') === 'true';
+        this.isDevMode = this.getAttribute('dev-mode') === 'true' || baseUrl.indexOf('.local') !== -1;
         const theme = this.isDevMode ? 'Omega/default/en_US' : 'Omega/default/default';
         this.minified = this.isDevMode ? '' : '.min';
 
@@ -272,7 +272,15 @@ class OmegaLegal extends OmegaExternal {
     };
 }
 
-customElements.define('omega-header', OmegaHeader);
-customElements.define('omega-footer', OmegaFooter);
-customElements.define('omega-cookies', OmegaCookies);
-customElements.define('omega-legal', OmegaLegal);
+if (!customElements.get('omega-header')) {
+    customElements.define('omega-header', OmegaHeader);
+}
+if (!customElements.get('omega-footer')) {
+    customElements.define('omega-footer', OmegaFooter);
+}
+if (!customElements.get('omega-cookies')) {
+    customElements.define('omega-cookies', OmegaCookies);
+}
+if (!customElements.get('omega-legal')) {
+    customElements.define('omega-legal', OmegaLegal);
+}
