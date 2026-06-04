@@ -33,7 +33,7 @@ class OmegaExternal extends HTMLElement {
         const now = new Date();
         const ms = 30 * 60 * 1000; // 30 minutes in milliseconds
         const rounded = Math.floor(now.getTime() / ms) * ms;
-        const timestamp = rounded / 1000;
+        const timestamp = '1678201541';
 
         this.staticUrl = `${this.serverUrl}static/version${timestamp}/frontend/${theme}/`;
 
@@ -61,7 +61,7 @@ class OmegaExternal extends HTMLElement {
                     document.dispatchEvent(new CustomEvent('external-dom-loaded'));
                 })
                 .catch(error => {
-                    console.error('Error fetching JSON:', error);
+                    console.error('Error fetching JSON:', error); document.dispatchEvent(new CustomEvent('external-dom-loaded'));
                 });
         }
 
